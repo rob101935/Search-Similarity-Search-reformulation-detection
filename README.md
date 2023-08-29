@@ -21,3 +21,11 @@ A commmon method for comparing similarities of search terms is using word embedd
 Once these are computed we can then look this as a problem of setting a similarity threshold that will result in correct classification of abandonments (for our purposes searches with no clicks) and successful searches. I also discovered that large time deltas between searches generally were more related to dissimilar searches, even if they did not click results which logically makes sense that the cause or result of these failed searches is not search reformulation, therefore i restricted the training set to only searches with a inter query delta time of 2.5 minutes or less.
 
 I ended up deciding to use all-MiniLM-L6-v2 embeddings as their performance over 5 cross fold validations sets was 67.49% vs 58.41% in terms of Macro F1 score. however it did achieve Precision of 73.5% which I felt was adequate given we are to use this as a metric later, we don't mind if some similar searches are identified that didn't result in abandonment its more important that all searches with relatively high semantic similarity that resulted in abandonment are identified. Refer to the EDA.ipynb for my further details EDA and model comparison. 
+
+## Productionalizing
+
+- make GCP pipeline & fast api app  https://themeansquare.medium.com/machine-learning-pipelines-with-google-cloud-platform-part-2-8c27d1d67b44 https://cloud.google.com/ai-platform/pipelines/docs/set-up-ml-pipelines
+
+- deploy to GCP docker and kubernetes https://medium.com/google-cloud/introduction-to-docker-and-kubernets-on-gcp-with-hands-on-configuration-part-1-docker-3d9709ee9f6a
+
+- performance tracking and monitoring?
